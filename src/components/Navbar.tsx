@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import logo from "../../public/logo.png";
 import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
+import { navItems } from "@/config/navigation";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -86,7 +87,7 @@ export function Navbar() {
                 <MobileMenu
                     open={open}
                     setOpen={setOpen}
-                    items={items}
+                    items={navItems}
                     pathname={pathname}
                 />
             </header>

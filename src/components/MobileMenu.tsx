@@ -1,19 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { LucideIcon, X } from "lucide-react";
-
-type Item = {
-    id: number;
-    name: string;
-    href: string;
-    icon: LucideIcon;
-};
+import { X } from "lucide-react";
+import { NavItem } from "@/config/navigation";
 
 type Props = {
     open: boolean;
     setOpen: (value: boolean) => void;
-    items: Item[];
+    items: NavItem[];
     pathname: string;
 };
 
@@ -44,7 +38,7 @@ export function MobileMenu({ open, setOpen, items, pathname }: Props) {
                                     key={item.id}
                                     href={item.href}
                                     onClick={() => setOpen(false)}
-                                    className={`flex flex-col items-center justify-center gap-2 p-4 rounded-2xl transition
+                                    className={`flex flex-col items-center gap-2 p-4 rounded-2xl transition
                                     ${
                                         active
                                             ? "bg-muted shadow-sm scale-105"
