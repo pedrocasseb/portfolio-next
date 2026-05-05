@@ -1,6 +1,6 @@
 "use client";
 
-import { Computer, HomeIcon, Mail, Menu, User, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,12 +11,7 @@ import { navItems } from "@/config/navigation";
 
 export function Navbar() {
     const pathname = usePathname();
-    const items = [
-        { id: 1, name: "Início", href: "/", icon: HomeIcon },
-        { id: 2, name: "Sobre", href: "/about", icon: User },
-        { id: 3, name: "Projetos", href: "/projects", icon: Computer },
-        { id: 4, name: "Contato", href: "/contact", icon: Mail },
-    ];
+    const items = navItems;
 
     const [open, setOpen] = useState(false);
 
@@ -24,9 +19,8 @@ export function Navbar() {
         <>
             <header className="sticky top-0 z-50 w-full bg-card border-b-2 py-1 border-dotted border-border/40">
                 <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
-                    <Link href="/" className="flex items-center">
+                    <Link href="/">
                         <Image src={logo} alt="Logo" width={70} height={70} />
-                        <h1 className="text-2xl font-bold">Casseb</h1>
                     </Link>
 
                     <nav className="hidden md:flex items-center">
