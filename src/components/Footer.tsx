@@ -13,8 +13,8 @@ export function Footer() {
                     }
                 `}
             </style>
-            <div className="px-4">
-                <footer className="bg-white w-full max-w-337.5 mx-auto text-black pt-8 lg:pt-12 px-4 sm:px-8 md:px-16 lg:px-28 rounded-tl-3xl rounded-tr-3xl overflow-hidden">
+            <div className="px-4 border-t-2 border-dotted border-border/40">
+                <footer className="bg-white w-full max-w-337.5 mx-auto text-black pt-8 lg:pt-12 px-4 sm:px-8 md:px-16 lg:px-28 overflow-hidden">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-6 gap-8 md:gap-12">
                         <div className="lg:col-span-3 space-y-6">
                             <Link
@@ -29,9 +29,11 @@ export function Footer() {
                                 Pedro Casseb
                             </Link>
                             <p className="text-sm/6 text-neutral-600 -mt-4 max-w-96">
-                                PrebuiltUI helps you build faster by
-                                transforming your design vision into fully
-                                functional, production-ready UI components.
+                                Sou estudante de Engenharia da Computação com
+                                foco em desenvolvimento de software. Tenho
+                                experiência com Java, JavaScript e
+                                desenvolvimento web, além de interesse em criar
+                                soluções inteligentes.
                             </p>
                             <div className="flex gap-5 md:gap-6 order-1 md:order-2">
                                 <a
@@ -125,100 +127,51 @@ export function Footer() {
                             </div>
 
                             <div>
-                                <h3 className="font-medium text-sm mb-4">B</h3>
+                                <h3 className="font-medium text-sm mb-4">
+                                    Colabore
+                                </h3>
                                 <ul className="space-y-3 text-sm text-neutral-800">
                                     <li>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href="https://github.com/pedrocasseb"
                                             className="hover:text-neutral-700"
+                                            target="_blank"
                                         >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
+                                            Github
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="col-span-2 md:col-span-1">
-                                <h3 className="font-medium text-sm mb-4">C</h3>
+                                <h3 className="font-medium text-sm mb-4">
+                                    Contatos
+                                </h3>
                                 <ul className="space-y-3 text-sm text-neutral-800">
                                     <li>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href="mailto:casseb.phcc@gmail.com"
                                             className="hover:text-neutral-700"
                                         >
-                                            X
-                                        </a>
+                                            Email
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href="https://www.linkedin.com/in/pedro-henrique-cardoso-casseb-871474347/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="hover:text-neutral-700"
                                         >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neutral-700"
-                                        >
-                                            X
-                                        </a>
+                                            LinkedIn
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div className="max-w-7xl mx-auto mt-12 pt-4 border-t border-neutral-300 flex justify-between items-center">
+                    <div className="max-w-7xl mx-auto mt-12 pt-4 border-t-2 border-dotted border-border flex justify-between items-center">
                         <p className="text-neutral-600 text-sm">
                             © 2025 PEDRO CASSEB
                         </p>
