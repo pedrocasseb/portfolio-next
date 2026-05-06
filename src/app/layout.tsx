@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/PageTransition";
-import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -41,7 +40,6 @@ export default function RootLayout({
             )}
         >
             <body className="min-h-screen flex flex-col">
-                <Navbar />
                 <main className="flex-1 flex flex-col">
                     <PageTransition>{children}</PageTransition>
                 </main>
