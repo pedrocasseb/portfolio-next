@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/PageTransition";
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -43,11 +42,9 @@ export default function RootLayout({
         >
             <body className="min-h-screen flex flex-col">
                 <Navbar />
-
-                <main className="flex-1">
+                <main className="flex-1 flex flex-col">
                     <PageTransition>{children}</PageTransition>
                 </main>
-                <Footer />
             </body>
         </html>
     );

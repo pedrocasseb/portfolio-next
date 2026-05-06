@@ -14,7 +14,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
                 initial={{ opacity: 0, y: 15, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="flex-1"
+                className="flex flex-col flex-1"
             >
                 {children}
             </motion.div>
