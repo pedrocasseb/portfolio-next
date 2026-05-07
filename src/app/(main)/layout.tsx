@@ -1,6 +1,7 @@
 import "../globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default function RootLayout({
     children,
@@ -9,9 +10,11 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <Navbar />
-            <div className="flex-1">{children}</div>
-            <Footer />
+            <TooltipProvider>
+                <Navbar />
+                <div className="flex-1">{children}</div>
+                <Footer />
+            </TooltipProvider>
         </>
     );
 }

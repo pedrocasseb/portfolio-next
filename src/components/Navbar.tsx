@@ -8,6 +8,7 @@ import logo from "../../public/logo.png";
 import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { navItems } from "@/config/navigation";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -30,13 +31,12 @@ export function Navbar() {
                                     const active = pathname === item.href;
 
                                     return (
-                                        <div
-                                            key={item.id}
-                                            className="relative flex items-center justify-center h-10 rounded-lg group shrink-0 transition-all duration-500 ease-out w-auto"
-                                        >
-                                            <Link
-                                                href={item.href}
-                                                className={`
+                                        <Tooltip key={item.id}>
+                                            <TooltipTrigger>
+                                                <div className="relative flex items-center justify-center h-10 rounded-lg group shrink-0 transition-all duration-500 ease-out w-auto">
+                                                    <Link
+                                                        href={item.href}
+                                                        className={`
                                             group flex items-center gap-2
                                             h-9 py-2
                                             bg-background
@@ -52,16 +52,21 @@ export function Navbar() {
                                                     : "px-2.5 rounded-md justify-center shadow-none"
                                             }
                                         `}
-                                            >
-                                                <item.icon className="size-4" />
-                                                {active && (
-                                                    <span className="text-sm font-medium whitespace-nowrap overflow-hidden transition-[max-width,margin] duration-500 ease-out opacity-100 max-w-20 ml-1 relative">
-                                                        {item.name}
-                                                    </span>
-                                                )}
-                                            </Link>
-                                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent opacity-50 -translate-x-full animate-[shine_2s_ease-in-out_infinite]" />
-                                        </div>
+                                                    >
+                                                        <item.icon className="size-4" />
+                                                        {active && (
+                                                            <span className="text-sm font-medium whitespace-nowrap overflow-hidden transition-[max-width,margin] duration-500 ease-out opacity-100 max-w-20 ml-1 relative">
+                                                                {item.name}
+                                                            </span>
+                                                        )}
+                                                    </Link>
+                                                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent opacity-50 -translate-x-full animate-[shine_2s_ease-in-out_infinite]" />
+                                                </div>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="bottom">
+                                                <p>{item.name}</p>
+                                            </TooltipContent>
+                                        </Tooltip>
                                     );
                                 })}
                             </div>
