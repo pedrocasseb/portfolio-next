@@ -9,6 +9,7 @@ import { useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 import { navItems } from "@/config/navigation";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { motion } from "framer-motion";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -32,24 +33,34 @@ export function Navbar() {
 
                                     return (
                                         <Tooltip key={item.id}>
-                                            <TooltipTrigger>
+                                            <TooltipTrigger asChild>
                                                 <div className="relative flex items-center justify-center h-10 rounded-lg group shrink-0 transition-all duration-500 ease-out w-auto">
+                                                    {active && (
+                                                        <motion.div
+                                                            layoutId="active-nav-pill"
+                                                            className="absolute inset-0 bg-background border border-border/40 rounded-lg shadow-xs -z-10"
+                                                            transition={{
+                                                                type: "spring",
+                                                                stiffness: 380,
+                                                                damping: 30,
+                                                            }}
+                                                        />
+                                                    )}
                                                     <Link
                                                         href={item.href}
                                                         className={`
                                             group flex items-center gap-2
                                             h-9 py-2
-                                            bg-background
                                             text-sm font-medium text-foreground
                                             transition-all duration-300 ease-out
-                                            hover:bg-accent hover:text-accent-foreground hover:border-border/50
+                                            hover:text-accent-foreground
                                             focus:outline-none focus:ring-1 focus:ring-black focus:ring-offset-2
                                             disabled:pointer-events-none disabled:opacity-50
                                             overflow-hidden relative z-10
                                             ${
                                                 active
-                                                    ? "px-4 justify-start scale-105 rounded-lg shadow-sm border border-border/30"
-                                                    : "px-2.5 rounded-md justify-center shadow-none"
+                                                    ? "px-4 justify-start scale-105 rounded-lg text-accent-foreground"
+                                                    : "px-2.5 rounded-md justify-center hover:bg-muted/50"
                                             }
                                         `}
                                                     >

@@ -13,7 +13,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { BeerIcon, Mail } from "lucide-react";
+import { Beer, Mail } from "lucide-react";
 
 export function Contact() {
     return (
@@ -40,7 +40,7 @@ export function Contact() {
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <div className="rounded-md border flex items-center justify-center h-10 w-10 border-border p-2 cursor-pointer">
-                                    <BeerIcon />
+                                    <Beer />
                                 </div>
                             </TooltipTrigger>
                             <TooltipContent>
