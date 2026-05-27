@@ -14,18 +14,68 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Beer, Mail } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 export function Contact() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        const title = containerRef.current.querySelector(".animate-title");
+        const desc = containerRef.current.querySelector(".animate-desc");
+        const card = containerRef.current.querySelector(".animate-card");
+        const items = containerRef.current.querySelectorAll(".animate-item");
+
+        // Hide elements initially to avoid flashes if any
+        gsap.set([title, desc, card], { opacity: 0 });
+        if (items.length > 0) gsap.set(items, { opacity: 0 });
+
+        tl.fromTo(
+            title,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, delay: 0.1 }
+        )
+            .fromTo(
+                desc,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1 },
+                "-=0.7"
+            )
+            .fromTo(
+                card,
+                { y: 50, opacity: 0, scale: 0.97 },
+                { y: 0, opacity: 1, scale: 1, duration: 1.2 },
+                "-=0.6"
+            );
+
+        if (items.length > 0) {
+            tl.fromTo(
+                items,
+                { x: -30, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.8, stagger: 0.12 },
+                "-=0.7"
+            );
+        }
+
+        return () => {
+            tl.kill();
+        };
+    }, []);
+
     return (
-        <div className="relative max-w-6xl -mt-10 mx-auto h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center p-10">
-            <h1 className="text-4xl font-bold mb-4">Vamos Conversar!</h1>
-            <p className="text-sm text-muted-foreground text-center max-w-2xl">
+        <div ref={containerRef} className="relative max-w-6xl -mt-10 mx-auto h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center p-10">
+            <h1 className="animate-title opacity-0 text-4xl font-bold mb-4">Vamos Conversar!</h1>
+            <p className="animate-desc opacity-0 text-sm text-muted-foreground text-center max-w-2xl">
                 Se você tem um projeto em mente, uma ideia para discutir ou
                 apenas quer dizer oi, sinta-se à vontade para entrar em contato
                 comigo. Estou sempre aberto a novas oportunidades e
                 colaborações.
             </p>
-            <Card className="mt-18 w-full">
+            <Card className="animate-card opacity-0 mt-18 w-full">
                 <CardHeader>
                     <div className="flex justify-between">
                         <div>
@@ -50,7 +100,7 @@ export function Contact() {
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between p-3 rounded-md border border-border/60">
+                    <div className="animate-item opacity-0 flex items-center justify-between p-3 rounded-md border border-border/60">
                         <div>
                             <div className="flex items-center gap-1">
                                 <Mail className="size-4" />
@@ -68,7 +118,7 @@ export function Contact() {
                         </a>
                     </div>
 
-                    <div className="flex items-center justify-between p-3 rounded-md border border-border/60">
+                    <div className="animate-item opacity-0 flex items-center justify-between p-3 rounded-md border border-border/60">
                         <div>
                             <div className="flex items-center gap-1">
                                 <svg
@@ -100,7 +150,7 @@ export function Contact() {
                         </a>
                     </div>
 
-                    <div className="flex items-center justify-between p-3 rounded-md border border-border/60">
+                    <div className="animate-item opacity-0 flex items-center justify-between p-3 rounded-md border border-border/60">
                         <div>
                             <div className="flex items-center gap-1">
                                 <svg
