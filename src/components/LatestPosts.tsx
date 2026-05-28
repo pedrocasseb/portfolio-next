@@ -43,7 +43,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
                     <Link
                         href={`/blog/${post.slug}`}
                         key={post.id}
-                        className="p-6 md:p-7 rounded-2xl border border-border/50 dark:border-border/10 bg-card/30 backdrop-blur-md hover:bg-card/75 hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between min-h-[300px] relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.25)] shadow-xs"
+                        className="p-6 md:p-7 rounded-2xl border border-border/50 dark:border-border/10 bg-card/30 backdrop-blur-md hover:bg-card/75 hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between min-h-[260px] relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.25)] shadow-xs"
                     >
                         {/* Background gradient flare on hover */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

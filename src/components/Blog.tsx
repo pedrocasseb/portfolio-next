@@ -170,12 +170,12 @@ export function Blog({ posts }: { posts: Post[] }) {
             </div>            {/* Articles List / Grid */}
             <div className="animate-blog-list opacity-0 w-full max-w-4xl mx-auto z-10 flex-1 flex flex-col justify-between">
                 {paginatedPosts.length > 0 ? (
-                    <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {paginatedPosts.map((post) => (
                             <Link
                                 href={`/blog/${post.slug}`}
                                 key={post.id}
-                                className="animate-blog-card opacity-0 p-6 md:p-8 rounded-2xl border border-border/50 dark:border-border/10 bg-card/30 backdrop-blur-md hover:bg-card/75 hover:border-primary/30 transition-all duration-500 group flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)]"
+                                className="animate-blog-card opacity-0 p-6 md:p-7 rounded-2xl border border-border/50 dark:border-border/10 bg-card/30 backdrop-blur-md hover:bg-card/75 hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between min-h-[260px] relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.04)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.25)] shadow-xs"
                             >
                                 {/* Background gradient flare on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -183,61 +183,61 @@ export function Blog({ posts }: { posts: Post[] }) {
                                 {/* Top Glow Accent Line */}
                                 <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="space-y-3.5 flex-1">
-                                    {/* Metadata */}
-                                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {post.categories.map((category) => {
-                                                const style = getCategoryStyles(category);
-                                                return (
-                                                    <span
-                                                        key={category}
-                                                        className={cn(
-                                                            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium border transition-all duration-300",
-                                                            style.text,
-                                                            style.bg,
-                                                            style.border
-                                                        )}
-                                                    >
-                                                        <span className={cn("size-1.5 rounded-full animate-pulse", style.dot)} />
-                                                        {category}
-                                                    </span>
-                                                );
-                                            })}
-                                        </div>
+                                <div className="space-y-4">
+                                    {/* Metadata (Categories) */}
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {post.categories.map((category) => {
+                                            const style = getCategoryStyles(category);
+                                            return (
+                                                <span
+                                                    key={category}
+                                                    className={cn(
+                                                        "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium border transition-all duration-300",
+                                                        style.text,
+                                                        style.bg,
+                                                        style.border
+                                                    )}
+                                                >
+                                                    <span className={cn("size-1.5 rounded-full animate-pulse", style.dot)} />
+                                                    {category}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
 
-                                        <span className="h-3 w-px bg-border/60 mx-1 hidden sm:inline" />
-
-                                        <span className="flex items-center gap-1 text-[11px] font-medium">
+                                    {/* Date & Time */}
+                                    <div className="flex items-center gap-3 text-[11px] text-muted-foreground font-medium select-none">
+                                        <span className="flex items-center gap-1">
                                             <Calendar className="size-3.5" />
                                             {post.date}
                                         </span>
-                                        <span className="flex items-center gap-1 text-[11px] font-medium">
+                                        <span className="h-3 w-px bg-border/60" />
+                                        <span className="flex items-center gap-1">
                                             <Clock className="size-3.5" />
                                             {post.readTime}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-snug">
+                                    <h3 className="text-lg md:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-snug line-clamp-2">
                                         {post.title}
                                     </h3>
 
                                     {/* Excerpt */}
-                                    <p className="text-sm text-muted-foreground leading-relaxed font-normal max-w-3xl">
+                                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-3">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
-                                {/* Minimal Square Arrow Button */}
-                                <div className="flex items-center justify-end shrink-0 self-end md:self-auto mt-4 md:mt-0">
-                                    <span className="text-xs font-semibold text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out select-none mr-3 hidden md:inline">
+                                {/* Bottom Button Layout */}
+                                <div className="mt-6 flex items-center justify-between">
+                                    <span className="text-xs font-semibold text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out select-none">
                                         Ler artigo
                                     </span>
                                     <div
                                         className={cn(
                                             buttonVariants({ variant: "outline", size: "icon" }),
-                                            "rounded-xl size-10 bg-card border-border/80 text-foreground shadow-xs transition-all duration-500 ease-out",
+                                            "rounded-xl size-9 bg-card border-border/80 text-foreground shadow-xs transition-all duration-500 ease-out",
                                             "group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground group-hover:scale-105 group-hover:shadow-[0_4px_12px_rgba(var(--primary),0.15)] cursor-pointer"
                                         )}
                                     >
