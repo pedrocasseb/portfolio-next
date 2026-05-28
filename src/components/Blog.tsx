@@ -16,120 +16,9 @@ export type Post = {
     slug: string;
 };
 
-const MOCK_POSTS: Post[] = [
-    {
-        id: 1,
-        title: "Desvendando o Next.js 16 e React 19: O que há de novo?",
-        excerpt: "Uma análise profunda das novas APIs do React 19, melhorias do compilador do Next.js e como preparar seu portfólio para o futuro.",
-        date: "28 de Maio, 2026",
-        readTime: "6 min de leitura",
-        category: "Next.js",
-        slug: "nextjs-16-react-19-novidades",
-    },
-    {
-        id: 2,
-        title: "GSAP + React: Guia definitivo para animações de alto desempenho",
-        excerpt: "Aprenda a estruturar animações complexas, sequenciamento de timelines e controle de renderização no React sem perder performance.",
-        date: "24 de Maio, 2026",
-        readTime: "8 min de leitura",
-        category: "Performance",
-        slug: "gsap-react-guia-animacoes-suaves",
-    },
-    {
-        id: 3,
-        title: "TypeScript Avançado: Tipagens e Utilitários indispensáveis",
-        excerpt: "Explore recursos avançados de tipagem, condicionais, tipos mapeados e genéricos que vão elevar o nível do seu código TypeScript.",
-        date: "18 de Maio, 2026",
-        readTime: "5 min de leitura",
-        category: "TypeScript",
-        slug: "typescript-avancado-utilitarios",
-    },
-    {
-        id: 4,
-        title: "Tailwind CSS v4: O futuro da estilização utilitária na Web",
-        excerpt: "Entenda as mudanças arquiteturais do Tailwind CSS v4, suporte nativo a CSS variáveis e o novo motor de compilação ultra-rápido.",
-        date: "12 de Maio, 2026",
-        readTime: "4 min de leitura",
-        category: "CSS",
-        slug: "tailwind-css-v4-futuro",
-    },
-    {
-        id: 5,
-        title: "Otimizando Core Web Vitals em portfólios estáticos de desenvolvedores",
-        excerpt: "Estratégias práticas de otimização de imagens, carregamento de fontes e eliminação de Javascript bloqueante para notas 100 no Lighthouse.",
-        date: "05 de Maio, 2026",
-        readTime: "7 min de leitura",
-        category: "Performance",
-        slug: "otimizando-core-web-vitals-performance",
-    },
-    {
-        id: 6,
-        title: "Como estruturar um projeto Next.js escalável usando App Router",
-        excerpt: "Melhores práticas de organização de pastas, roteamento, modularização de componentes e uso estratégico de Server e Client Components.",
-        date: "30 de Abril, 2026",
-        readTime: "9 min de leitura",
-        category: "Next.js",
-        slug: "estruturando-projeto-nextjs-escalavel",
-    },
-    {
-        id: 7,
-        title: "Estado Global no React em 2026: Do Context API ao Zustand",
-        excerpt: "Um comparativo detalhado sobre gerenciamento de estado no React moderno. Quando usar Context, Redux, Zustand ou Signals.",
-        date: "22 de Abril, 2026",
-        readTime: "7 min de leitura",
-        category: "React",
-        slug: "estado-global-react-zustand-context",
-    },
-    {
-        id: 8,
-        title: "A importância da acessibilidade (a11y) no desenvolvimento frontend",
-        excerpt: "Como tornar suas aplicações acessíveis utilizando tags semânticas, leitores de tela ARIA e navegação simplificada por teclado.",
-        date: "15 de Abril, 2026",
-        readTime: "5 min de leitura",
-        category: "CSS",
-        slug: "acessibilidade-a11y-desenvolvimento-frontend",
-    },
-    {
-        id: 9,
-        title: "Construindo uma biblioteca de componentes agnóstica e performática",
-        excerpt: "Aprenda os segredos por trás da criação de sistemas de design flexíveis, empacotamento NPM e suporte a múltiplos frameworks.",
-        date: "08 de Abril, 2026",
-        readTime: "8 min de leitura",
-        category: "React",
-        slug: "construindo-biblioteca-componentes-design-system",
-    },
-    {
-        id: 10,
-        title: "Segurança em APIs Node.js: Melhores práticas essenciais",
-        excerpt: "Proteja seus endpoints de ataques comuns implementando rate limiting, sanitização de inputs, CORS seguro e autenticação JWT robusta.",
-        date: "02 de Abril, 2026",
-        readTime: "6 min de leitura",
-        category: "TypeScript",
-        slug: "seguranca-apis-nodejs-jwt",
-    },
-    {
-        id: 11,
-        title: "Aplicações Serverless com Next.js: Prós e Contras em produção",
-        excerpt: "Analise os impactos de custos, cold starts e escalabilidade infinita de funções serverless rodando no Vercel, AWS e Netlify.",
-        date: "25 de Março, 2026",
-        readTime: "8 min de leitura",
-        category: "Next.js",
-        slug: "aplicacoes-serverless-nextjs-pros-contras",
-    },
-    {
-        id: 12,
-        title: "Guia de transição de CSS nativo para Nesting e Modern CSS em 2026",
-        excerpt: "Descubra como o CSS moderno elimina a necessidade de pré-processadores como SASS usando CSS Nesting, variáveis locais e CSS grid avançado.",
-        date: "18 de Março, 2026",
-        readTime: "5 min de leitura",
-        category: "CSS",
-        slug: "guia-modern-css-nesting",
-    },
-];
-
 const CATEGORIES = ["Todos", "Next.js", "React", "TypeScript", "Performance", "CSS"];
 
-export function Blog() {
+export function Blog({ posts }: { posts: Post[] }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [activeCategory, setActiveCategory] = useState("Todos");
@@ -149,7 +38,7 @@ export function Blog() {
 
     // Filter posts based on category and search query
     const filteredPosts = useMemo(() => {
-        return MOCK_POSTS.filter((post) => {
+        return posts.filter((post) => {
             const matchesCategory =
                 activeCategory === "Todos" || post.category === activeCategory;
             const matchesSearch =
@@ -158,7 +47,7 @@ export function Blog() {
                 post.category.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesCategory && matchesSearch;
         });
-    }, [searchQuery, activeCategory]);
+    }, [posts, searchQuery, activeCategory]);
 
     // Compute total pages
     const totalPages = useMemo(() => {
@@ -272,7 +161,8 @@ export function Blog() {
                 {paginatedPosts.length > 0 ? (
                     <div className="space-y-6">
                         {paginatedPosts.map((post) => (
-                            <article
+                            <Link
+                                href={`/blog/${post.slug}`}
                                 key={post.id}
                                 className="animate-blog-card opacity-0 p-6 rounded-xl border border-border/60 bg-card/40 backdrop-blur-xs hover:bg-card/85 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col md:flex-row md:items-center justify-between gap-6"
                             >
@@ -304,16 +194,15 @@ export function Blog() {
                                 </div>
 
                                 {/* Minimal Square Arrow Button */}
-                                <Link
-                                    href={`/blog/${post.slug}`}
+                                <div
                                     className={
                                         buttonVariants({ variant: "default", size: "icon" }) +
-                                        " group shrink-0"
+                                        " shrink-0"
                                     }
                                 >
                                     <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                                </Link>
-                            </article>
+                                </div>
+                            </Link>
                         ))}
                     </div>
                 ) : (
