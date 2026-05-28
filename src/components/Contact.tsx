@@ -13,7 +13,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Beer, Mail } from "lucide-react";
+import { Beer, Mail, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -68,7 +68,7 @@ export function Contact() {
 
     return (
         <div ref={containerRef} className="relative max-w-6xl -mt-10 mx-auto h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center p-10">
-            <h1 className="animate-title opacity-0 text-4xl font-bold mb-4">Vamos Conversar!</h1>
+            <h1 className="animate-title opacity-0 text-4xl font-bold mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent">Vamos Conversar!</h1>
             <p className="animate-desc opacity-0 text-sm text-muted-foreground text-center max-w-2xl">
                 Se você tem um projeto em mente, uma ideia para discutir ou
                 apenas quer dizer oi, sinta-se à vontade para entrar em contato
@@ -112,9 +112,9 @@ export function Contact() {
                         </div>
                         <a
                             href="mailto:casseb.phcc@gmail.com"
-                            className={buttonVariants({ variant: "default" })}
+                            className={buttonVariants({ variant: "default", size: "icon" }) + " group"}
                         >
-                            Enviar
+                            <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                         </a>
                     </div>
 
@@ -144,9 +144,9 @@ export function Contact() {
                         <a
                             href="https://github.com/pedrocasseb"
                             target="_blank"
-                            className={buttonVariants({ variant: "default" })}
+                            className={buttonVariants({ variant: "default", size: "icon" }) + " group"}
                         >
-                            Abrir
+                            <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                         </a>
                     </div>
 
@@ -177,9 +177,9 @@ export function Contact() {
                         <a
                             href="https://www.linkedin.com/in/pedro-henrique-cardoso-casseb-871474347/"
                             target="_blank"
-                            className={buttonVariants({ variant: "default" })}
+                            className={buttonVariants({ variant: "default", size: "icon" }) + " group"}
                         >
-                            Conectar
+                            <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                         </a>
                     </div>
                 </CardContent>
