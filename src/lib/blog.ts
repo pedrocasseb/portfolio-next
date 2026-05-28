@@ -10,7 +10,7 @@ export interface PostData {
     excerpt: string;
     date: string;
     readTime: string;
-    category: string;
+    categories: string[];
     slug: string;
     content?: string;
 }
@@ -36,7 +36,7 @@ export function getAllPosts(): PostData[] {
                 excerpt: data.excerpt,
                 date: data.date,
                 readTime: data.readTime,
-                category: data.category,
+                categories: data.categories || (data.category ? [data.category] : []),
                 slug: data.slug || fileName.replace(/\.md$/, ""),
             } as PostData;
         });
@@ -62,7 +62,7 @@ export async function getPostBySlug(slug: string): Promise<PostData | null> {
         excerpt: data.excerpt,
         date: data.date,
         readTime: data.readTime,
-        category: data.category,
+        categories: data.categories || (data.category ? [data.category] : []),
         slug: data.slug || slug,
         content: htmlContent,
     };

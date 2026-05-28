@@ -12,11 +12,11 @@ export type Post = {
     excerpt: string;
     date: string;
     readTime: string;
-    category: string;
+    categories: string[];
     slug: string;
 };
 
-const CATEGORIES = ["Todos", "Next.js", "React", "TypeScript", "Performance", "CSS"];
+const CATEGORIES = ["Todos", "Next.js", "React", "TypeScript", "Performance", "CSS", "Java"];
 
 export function Blog({ posts }: { posts: Post[] }) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -40,11 +40,11 @@ export function Blog({ posts }: { posts: Post[] }) {
     const filteredPosts = useMemo(() => {
         return posts.filter((post) => {
             const matchesCategory =
-                activeCategory === "Todos" || post.category === activeCategory;
+                activeCategory === "Todos" || post.categories.includes(activeCategory);
             const matchesSearch =
                 post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                post.category.toLowerCase().includes(searchQuery.toLowerCase());
+                post.categories.some((cat) => cat.toLowerCase().includes(searchQuery.toLowerCase()));
             return matchesCategory && matchesSearch;
         });
     }, [posts, searchQuery, activeCategory]);
@@ -169,9 +169,11 @@ export function Blog({ posts }: { posts: Post[] }) {
                                 <div className="space-y-3 flex-1">
                                     {/* Metadata */}
                                     <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                                        <span className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium">
-                                            {post.category}
-                                        </span>
+                                        {post.categories.map((category) => (
+                                            <span key={category} className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium select-none">
+                                                {category}
+                                            </span>
+                                        ))}
                                         <span className="flex items-center gap-1">
                                             <Calendar className="size-3.5" />
                                             {post.date}

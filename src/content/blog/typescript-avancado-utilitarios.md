@@ -3,7 +3,7 @@ title: "TypeScript Avançado: Tipagens e Utilitários indispensáveis"
 excerpt: "Explore recursos avançados de tipagem, condicionais, tipos mapeados e genéricos que vão elevar o nível do seu código TypeScript."
 date: "18 de Maio, 2026"
 readTime: "5 min de leitura"
-category: "TypeScript"
+categories: ["TypeScript", "React"]
 slug: "typescript-avancado-utilitarios"
 ---
 

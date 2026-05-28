@@ -3,7 +3,7 @@ title: "Desvendando o Next.js 16 e React 19: O que há de novo?"
 excerpt: "Uma análise profunda das novas APIs do React 19, melhorias do compilador do Next.js e como preparar seu portfólio para o futuro."
 date: "28 de Maio, 2026"
 readTime: "6 min de leitura"
-category: "Next.js"
+categories: ["Next.js", "React"]
 slug: "nextjs-16-react-19-novidades"
 ---
 

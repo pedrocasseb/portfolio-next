@@ -48,9 +48,11 @@ export default async function BlogPostPage({ params }: Props) {
             <header className="space-y-4 mb-8">
                 {/* Meta details */}
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                    <span className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium">
-                        {post.category}
-                    </span>
+                    {post.categories.map((category) => (
+                        <span key={category} className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium select-none">
+                            {category}
+                        </span>
+                    ))}
                     <span className="flex items-center gap-1">
                         <Calendar className="size-3.5" />
                         {post.date}

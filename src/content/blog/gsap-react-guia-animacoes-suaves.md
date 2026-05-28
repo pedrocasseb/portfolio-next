@@ -3,7 +3,7 @@ title: "GSAP + React: Guia definitivo para animações de alto desempenho"
 excerpt: "Aprenda a estruturar animações complexas, sequenciamento de timelines e controle de renderização no React sem perder performance."
 date: "24 de Maio, 2026"
 readTime: "8 min de leitura"
-category: "Performance"
+categories: ["Performance", "React"]
 slug: "gsap-react-guia-animacoes-suaves"
 ---
 
