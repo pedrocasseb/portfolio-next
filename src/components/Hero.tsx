@@ -75,7 +75,7 @@ export function Hero() {
             className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center px-6 pt-24 pb-16 md:pt-32 md:pb-20"
         >
             {/* Background elements */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 md:w-120 h-75 md:h-125 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
             {/* Glowing Badge */}
             <div className="animate-hero-badge opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-6 backdrop-blur-xs select-none">
