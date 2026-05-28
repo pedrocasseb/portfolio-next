@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import { ArrowUpRight, Search, Calendar, Clock } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export type Post = {
     id: number;
@@ -17,6 +18,18 @@ export type Post = {
 };
 
 const CATEGORIES = ["Todos", "Next.js", "React", "TypeScript", "Performance", "CSS", "Java"];
+
+export const getCategoryStyles = (category: string) => {
+    const styles: Record<string, { dot: string; text: string; bg: string; border: string }> = {
+        "Next.js": { dot: "bg-neutral-950 dark:bg-white", text: "text-neutral-900 dark:text-neutral-100", bg: "bg-neutral-100/80 dark:bg-neutral-800/80", border: "border-neutral-200 dark:border-neutral-700/60" },
+        "React": { dot: "bg-sky-450", text: "text-sky-600 dark:text-sky-400", bg: "bg-sky-50 dark:bg-sky-950/20", border: "border-sky-200 dark:border-sky-800/40" },
+        "TypeScript": { dot: "bg-blue-500", text: "text-blue-600 dark:text-blue-400", bg: "bg-blue-50 dark:bg-blue-950/20", border: "border-blue-200 dark:border-blue-800/40" },
+        "Performance": { dot: "bg-emerald-500", text: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-50 dark:bg-emerald-950/20", border: "border-emerald-200 dark:border-emerald-800/40" },
+        "CSS": { dot: "bg-pink-500", text: "text-pink-600 dark:text-pink-400", bg: "bg-pink-50 dark:bg-pink-950/20", border: "border-pink-200 dark:border-pink-800/40" },
+        "Java": { dot: "bg-amber-600", text: "text-amber-600 dark:text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/20", border: "border-amber-200 dark:border-amber-800/40" },
+    };
+    return styles[category] || { dot: "bg-primary", text: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/60" };
+};
 
 export function Blog({ posts }: { posts: Post[] }) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -154,9 +167,7 @@ export function Blog({ posts }: { posts: Post[] }) {
                         </button>
                     ))}
                 </div>
-            </div>
-
-            {/* Articles List / Grid */}
+            </div>            {/* Articles List / Grid */}
             <div className="animate-blog-list opacity-0 w-full max-w-4xl mx-auto z-10 flex-1 flex flex-col justify-between">
                 {paginatedPosts.length > 0 ? (
                     <div className="space-y-6">
@@ -164,45 +175,74 @@ export function Blog({ posts }: { posts: Post[] }) {
                             <Link
                                 href={`/blog/${post.slug}`}
                                 key={post.id}
-                                className="animate-blog-card opacity-0 p-6 rounded-xl border border-border/60 bg-card/40 backdrop-blur-xs hover:bg-card/85 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col md:flex-row md:items-center justify-between gap-6"
+                                className="animate-blog-card opacity-0 p-6 md:p-8 rounded-2xl border border-border/50 dark:border-border/10 bg-card/30 backdrop-blur-md hover:bg-card/75 hover:border-primary/30 transition-all duration-500 group flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.03)] dark:hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)]"
                             >
-                                <div className="space-y-3 flex-1">
+                                {/* Background gradient flare on hover */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                                {/* Top Glow Accent Line */}
+                                <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                <div className="space-y-3.5 flex-1">
                                     {/* Metadata */}
                                     <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                                        {post.categories.map((category) => (
-                                            <span key={category} className="px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium select-none">
-                                                {category}
-                                            </span>
-                                        ))}
-                                        <span className="flex items-center gap-1">
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {post.categories.map((category) => {
+                                                const style = getCategoryStyles(category);
+                                                return (
+                                                    <span
+                                                        key={category}
+                                                        className={cn(
+                                                            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium border transition-all duration-300",
+                                                            style.text,
+                                                            style.bg,
+                                                            style.border
+                                                        )}
+                                                    >
+                                                        <span className={cn("size-1.5 rounded-full animate-pulse", style.dot)} />
+                                                        {category}
+                                                    </span>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <span className="h-3 w-px bg-border/60 mx-1 hidden sm:inline" />
+
+                                        <span className="flex items-center gap-1 text-[11px] font-medium">
                                             <Calendar className="size-3.5" />
                                             {post.date}
                                         </span>
-                                        <span className="flex items-center gap-1">
+                                        <span className="flex items-center gap-1 text-[11px] font-medium">
                                             <Clock className="size-3.5" />
                                             {post.readTime}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-lg md:text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
+                                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-snug">
                                         {post.title}
                                     </h3>
 
                                     {/* Excerpt */}
-                                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                                    <p className="text-sm text-muted-foreground leading-relaxed font-normal max-w-3xl">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
                                 {/* Minimal Square Arrow Button */}
-                                <div
-                                    className={
-                                        buttonVariants({ variant: "default", size: "icon" }) +
-                                        " shrink-0"
-                                    }
-                                >
-                                    <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                                <div className="flex items-center justify-end shrink-0 self-end md:self-auto mt-4 md:mt-0">
+                                    <span className="text-xs font-semibold text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-out select-none mr-3 hidden md:inline">
+                                        Ler artigo
+                                    </span>
+                                    <div
+                                        className={cn(
+                                            buttonVariants({ variant: "outline", size: "icon" }),
+                                            "rounded-xl size-10 bg-card border-border/80 text-foreground shadow-xs transition-all duration-500 ease-out",
+                                            "group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground group-hover:scale-105 group-hover:shadow-[0_4px_12px_rgba(var(--primary),0.15)] cursor-pointer"
+                                        )}
+                                    >
+                                        <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                                    </div>
                                 </div>
                             </Link>
                         ))}
