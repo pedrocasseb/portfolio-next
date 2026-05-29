@@ -63,22 +63,46 @@ const INTERNSHIPS = [
 
 const COURSES = [
     {
-        title: "Desenvolvimento Web Full Stack",
-        platform: "Rocketseat / Alura (ou similar)",
-        hours: "120 horas",
-        skills: "Next.js, Node.js, Prisma, PostgreSQL, Docker e deploy escalável.",
+        title: "CS50's Introduction to Computer Science",
+        platform: "Harvard University (edX)",
+        hours: "70+ horas",
+        skills: "Algoritmos, estruturas de dados, lógica de programação, C, Python, SQL e fundamentos da ciência da computação.",
     },
     {
-        title: "Java & Spring Boot Professional",
-        platform: "Udemy / Nelio Alves (ou similar)",
-        hours: "80 horas",
-        skills: "JPA/Hibernate, Spring Security, arquitetura DDD e testes unitários.",
+        title: "Curso de Extensão Universitária na modalidade de Difusão: INTRODUÇÃO AO MACHINE LEARNING COM PYTHON",
+        platform: "USP",
+        hours: "8 horas",
+        skills: "Fundamentos de machine learning, manipulação de dados, treinamento de modelos e aplicações utilizando Python.",
     },
     {
-        title: "Clean Code & Melhores Práticas",
-        platform: "Alura (ou similar)",
-        hours: "40 horas",
-        skills: "Princípios SOLID, refatoração, design patterns e arquiteturas limpas.",
+        title: "Python para dados: do zero à análise completa",
+        platform: "Asimov Academy",
+        hours: "8 horas",
+        skills: "Manipulação de dados, análise exploratória, visualização de dados e utilização de bibliotecas do ecossistema Python.",
+    },
+    {
+        title: "Java Intermediário",
+        platform: "Loiane Groner",
+        hours: "9 horas",
+        skills: "Programação orientada a objetos, herança, polimorfismo, encapsulamento, coleções e boas práticas em Java.",
+    },
+    {
+        title: "Java Básico",
+        platform: "Loiane Groner",
+        hours: "30 horas",
+        skills: "Sintaxe Java, lógica de programação, estruturas de controle, funções, arrays e fundamentos da linguagem.",
+    },
+    {
+        title: "CURSO DE LÓGICA DE PROGRAMAÇÃO",
+        platform: "Danki Code",
+        hours: "5 horas",
+        skills: "Lógica de programação, algoritmos, estruturas condicionais, repetição e resolução de problemas.",
+    },
+    {
+        title: "CURSO FRONT-END COMPLETO 2.0",
+        platform: "Danki Code",
+        hours: "9 horas",
+        skills: "HTML, CSS, JavaScript, responsividade, manipulação do DOM e fundamentos de desenvolvimento web.",
     },
 ];
 
@@ -226,28 +250,31 @@ export function About() {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden"
+            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-20 pb-24 md:pt-24 md:pb-32 overflow-hidden"
         >
             {/* Background elements */}
             <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary/2 rounded-full blur-3xl pointer-events-none -z-10" />
             <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-primary/3 rounded-full blur-3xl pointer-events-none -z-10" />
 
             {/* Header / Intro Hero Section */}
-            <div className="animate-about-header opacity-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto h-[calc(100vh-140px)] md:h-[calc(100vh-180px)] select-none relative pb-16">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-6 backdrop-blur-xs">
+            <div className="animate-about-header opacity-0 flex flex-col justify-start items-center text-center max-w-4xl mx-auto min-h-[calc(100vh-140px)] md:min-h-[calc(100vh-180px)] select-none relative pt-14 md:pt-24 pb-20">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-4 backdrop-blur-xs">
                     👤 Quem é Pedro Casseb?
                 </div>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent leading-[1.15]">
-                    Criando soluções eficientes por meio de engenharia e inovação
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent leading-[1.15]">
+                    Criando soluções eficientes por meio de engenharia e
+                    inovação
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                    Sou estudante de Engenharia de Computação na UNAERP e desenvolvedor focado em criar 
-                    produtos digitais performáticos. Minha missão é traduzir problemas de negócios complexos 
-                    em linhas de código elegantes, limpas e escaláveis.
+                    Sou estudante de Engenharia de Computação na UNAERP e
+                    desenvolvedor focado em criar produtos digitais
+                    performáticos. Minha missão é traduzir problemas de negócios
+                    complexos em linhas de código elegantes, limpas e
+                    escaláveis.
                 </p>
 
                 {/* Location and Status info card */}
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-muted-foreground">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
                         <MapPin className="size-3.5" />
                         Ribeirão Preto, SP, Brasil
@@ -260,7 +287,7 @@ export function About() {
                 </div>
 
                 {/* Bouncing Scroll Down Indicator */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-70">
+                <div className="absolute bottom-8 md:bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-70">
                     <span className="text-[10px] tracking-wider uppercase font-semibold text-muted-foreground select-none">
                         Rolar para explorar
                     </span>
@@ -271,13 +298,17 @@ export function About() {
                         strokeWidth="2.5"
                         viewBox="0 0 24 24"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                        />
                     </svg>
                 </div>
             </div>
 
             {/* Timeline Section (Faculdade e Estágios) */}
-            <div className="pt-20 border-t border-border/40 mb-20 space-y-12 relative w-full">
+            <div className="pt-16 border-t border-border/40 mb-32 space-y-12 relative w-full">
                 <div className="animate-timeline-header opacity-0 text-center select-none">
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                         Trajetória de Aprendizado
@@ -397,7 +428,7 @@ export function About() {
             </div>
 
             {/* Skill Stack Grid */}
-            <div className="animate-skills-section opacity-0 mb-20 space-y-12">
+            <div className="animate-skills-section opacity-0 mb-32 space-y-12">
                 <div className="text-center select-none">
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                         Minhas Stacks Técnicas
@@ -479,37 +510,30 @@ export function About() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="max-w-4xl mx-auto border border-border/60 rounded-2xl bg-card/30 backdrop-blur-xs p-4 md:p-6 space-y-1">
                     {COURSES.map((course, idx) => (
                         <div
                             key={idx}
-                            className="animate-course-card opacity-0 p-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-xs hover:bg-card/80 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between"
+                            className="animate-course-card opacity-0 py-4 px-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/30 last:border-b-0 hover:bg-muted/40 dark:hover:bg-muted/15 rounded-xl transition-all duration-300 group"
                         >
-                            <div className="space-y-4">
-                                <div className="flex items-start justify-between">
-                                    <div className="h-8 w-8 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center text-primary">
-                                        <Award className="size-4.5" />
-                                    </div>
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[9px] font-bold bg-secondary text-secondary-foreground">
-                                        {course.hours}
-                                    </span>
+                            <div className="flex items-start gap-4 flex-1">
+                                <div className="h-9 w-9 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300 shrink-0">
+                                    <Award className="size-4.5" />
                                 </div>
-
-                                <div className="space-y-1">
-                                    <h4 className="text-sm font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                                <div className="space-y-1 flex-1">
+                                    <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                                         {course.title}
                                     </h4>
-                                    <p className="text-[11px] font-semibold text-muted-foreground">
-                                        {course.platform}
+                                    <p className="text-[11px] font-semibold text-muted-foreground mt-0.5">
+                                        {course.platform} • <span className="text-foreground/80 font-bold">{course.hours}</span>
                                     </p>
                                 </div>
+                            </div>
 
-                                <p className="text-xs text-muted-foreground leading-relaxed">
-                                    <strong className="text-foreground font-semibold">
-                                        Tópicos:
-                                    </strong>{" "}
+                            <div className="md:w-1/2 text-left md:text-right md:pl-6">
+                                <span className="text-xs text-muted-foreground font-medium leading-relaxed block">
                                     {course.skills}
-                                </p>
+                                </span>
                             </div>
                         </div>
                     ))}
