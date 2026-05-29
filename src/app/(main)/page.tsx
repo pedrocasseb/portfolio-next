@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { HomeAbout } from "@/components/HomeAbout";
 import { LatestPosts } from "@/components/LatestPosts";
 import { HomeProjects } from "@/components/HomeProjects";
+import { HomeContact } from "@/components/HomeContact";
 import { getAllPosts } from "@/lib/blog";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
             <HomeAbout />
             <LatestPosts posts={latestPosts} />
             <HomeProjects />
+            <HomeContact />
         </div>
     );
 }
