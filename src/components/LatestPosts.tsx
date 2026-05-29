@@ -2,9 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowUpRight, Calendar } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export type Post = {
     id: number;
@@ -22,8 +25,6 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
     useEffect(() => {
         if (!containerRef.current) return;
 
-        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-
         const badge = containerRef.current.querySelector(".animate-latest-badge");
         const title = containerRef.current.querySelector(".animate-latest-title");
         const desc = containerRef.current.querySelector(".animate-latest-desc");
@@ -34,10 +35,19 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
         gsap.set([badge, title, desc, cta], { opacity: 0 });
         if (cards.length > 0) gsap.set(cards, { opacity: 0 });
 
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            defaults: { ease: "power4.out" }
+        });
+
         tl.fromTo(
             badge,
             { y: -20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, delay: 0.15 }
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.05 }
         )
             .fromTo(
                 title,
@@ -70,6 +80,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
 
         return () => {
             tl.kill();
+            ScrollTrigger.getAll().forEach((t) => t.kill());
         };
     }, []);
 
