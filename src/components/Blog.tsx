@@ -111,7 +111,7 @@ export function Blog({ posts }: { posts: Post[] }) {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-24 pb-16 md:pt-32 md:pb-20"
+            className="relative w-full max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden"
         >
             {/* Header Section */}
             <div className="animate-blog-header opacity-0 text-center max-w-3xl mx-auto mb-12">

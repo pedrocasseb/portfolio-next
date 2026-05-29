@@ -75,7 +75,7 @@ export function HomeContact() {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 overflow-hidden border-b-2 border-dotted border-border/40"
+            className="relative w-full max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 overflow-hidden border-b-2 border-dotted border-border/40"
         >
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-10 w-[200px] h-[200px] bg-primary/2 rounded-full blur-3xl pointer-events-none -z-10" />

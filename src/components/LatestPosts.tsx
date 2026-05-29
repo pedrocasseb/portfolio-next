@@ -92,7 +92,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 flex flex-col items-center overflow-hidden"
+            className="relative w-full max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 flex flex-col items-center overflow-hidden"
         >
             {/* Background elements */}
             <div className="absolute bottom-0 right-10 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-primary/3 rounded-full blur-3xl pointer-events-none -z-10" />

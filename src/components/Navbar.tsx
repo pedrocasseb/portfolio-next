@@ -20,7 +20,7 @@ export function Navbar() {
     return (
         <>
             <header className="sticky top-0 z-50 w-full bg-card/80 border-b-2 py-1 border-dotted border-border/40 backdrop-blur-md">
-                <div className="max-w-6xl mx-auto flex h-16 items-center justify-between">
+                <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-6">
                     <Link href="/">
                         <Image src={logo} alt="Logo" width={70} height={70} />
                     </Link>

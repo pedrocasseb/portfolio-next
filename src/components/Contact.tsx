@@ -67,7 +67,7 @@ export function Contact() {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative max-w-6xl -mt-10 mx-auto h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center p-10">
+        <div ref={containerRef} className="relative w-full max-w-6xl -mt-10 mx-auto h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center p-10 overflow-hidden">
             <h1 className="animate-title opacity-0 text-4xl font-bold mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent">Vamos Conversar!</h1>
             <p className="animate-desc opacity-0 text-sm text-muted-foreground text-center max-w-2xl">
                 Se você tem um projeto em mente, uma ideia para discutir ou

@@ -72,7 +72,7 @@ export function Hero() {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center px-6 pt-24 pb-16 md:pt-32 md:pb-20"
+            className="relative w-full max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col justify-center items-center px-6 pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden"
         >
             {/* Background elements */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 md:w-120 h-75 md:h-125 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />

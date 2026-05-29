@@ -129,7 +129,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
     return (
         <div
             ref={containerRef}
-            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-20 pb-24 md:pt-24 md:pb-32 overflow-hidden"
+            className="relative w-full max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-20 pb-24 md:pt-24 md:pb-32 overflow-hidden"
         >
             {/* Ambient background blur elements */}
             <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary/2 rounded-full blur-3xl pointer-events-none -z-10" />
