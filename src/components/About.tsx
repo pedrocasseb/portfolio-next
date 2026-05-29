@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
     GraduationCap,
     Briefcase,
@@ -15,6 +16,8 @@ import {
     Boxes,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Mock/Template Data for easy customization by Pedro
 const EDUCATION = [
@@ -151,8 +154,6 @@ export function About() {
     useEffect(() => {
         if (!containerRef.current) return;
 
-        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-
         const header = containerRef.current.querySelector(
             ".animate-about-header",
         );
@@ -193,32 +194,50 @@ export function About() {
         if (skillsGrid.length > 0) gsap.set(skillsGrid, { opacity: 0 });
         if (coursesGrid.length > 0) gsap.set(coursesGrid, { opacity: 0 });
 
-        tl.fromTo(
+        // 1. Hero / Intro Section Animation (Plays immediately on mount)
+        const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+        heroTl.fromTo(
             header,
             { y: 30, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.8, delay: 0.1 },
-        )
-            .fromTo(
-                timelineHeader,
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8 },
-                "-=0.5",
-            )
-            .fromTo(
-                [educationColumn, internshipColumn],
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
-                "-=0.5",
-            )
-            .fromTo(
-                skillsSection,
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8 },
-                "-=0.6",
-            );
+        );
 
+        // 2. Trajetória de Aprendizado (Timeline) Scroll Trigger Animation
+        const timelineTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: timelineHeader,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            defaults: { ease: "power4.out" }
+        });
+        timelineTl.fromTo(
+            timelineHeader,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8 },
+        ).fromTo(
+            [educationColumn, internshipColumn],
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
+            "-=0.4",
+        );
+
+        // 3. Stacks Técnicas Scroll Trigger Animation
+        const skillsTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: skillsSection,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            defaults: { ease: "power4.out" }
+        });
+        skillsTl.fromTo(
+            skillsSection,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8 },
+        );
         if (skillsGrid.length > 0) {
-            tl.fromTo(
+            skillsTl.fromTo(
                 skillsGrid,
                 { y: 20, opacity: 0, scale: 0.97 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
@@ -226,15 +245,22 @@ export function About() {
             );
         }
 
-        tl.fromTo(
+        // 4. Cursos & Certificados Scroll Trigger Animation
+        const coursesTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: coursesSection,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            defaults: { ease: "power4.out" }
+        });
+        coursesTl.fromTo(
             coursesSection,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.8 },
-            "-=0.6",
         );
-
         if (coursesGrid.length > 0) {
-            tl.fromTo(
+            coursesTl.fromTo(
                 coursesGrid,
                 { y: 20, opacity: 0, scale: 0.97 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
@@ -242,8 +268,13 @@ export function About() {
             );
         }
 
+        // Cleanup on unmount
         return () => {
-            tl.kill();
+            heroTl.kill();
+            timelineTl.kill();
+            skillsTl.kill();
+            coursesTl.kill();
+            ScrollTrigger.getAll().forEach((t) => t.kill());
         };
     }, []);
 
