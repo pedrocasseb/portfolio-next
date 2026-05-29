@@ -26,7 +26,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
 
-    const PROJECTS_PER_PAGE = 4; // Yields multiple pages to test pagination cleanly
+    const PROJECTS_PER_PAGE = 6; // Fits all 5 current projects on a single page, ready to scale
 
     // Reset current page when active category changes
     useEffect(() => {
@@ -181,22 +181,13 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
                         {paginatedProjects.map((project) => (
                             <div
                                 key={project.id}
-                                className={cn(
-                                    "animate-project-card opacity-0 p-6 md:p-8 rounded-2xl border border-border/60 bg-card/45 backdrop-blur-xs hover:bg-card/75 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between min-h-[320px]",
-                                    project.featured ? "md:col-span-2" : "md:col-span-1"
-                                )}
+                                className="animate-project-card opacity-0 p-6 md:p-8 rounded-2xl border border-border/60 bg-card/45 backdrop-blur-xs hover:bg-card/75 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between min-h-[320px]"
                             >
                                 <div className="space-y-4">
                                     <div className="flex items-center justify-between">
-                                        {project.featured ? (
-                                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-foreground select-none">
-                                                💡 Destaque
-                                            </span>
-                                        ) : (
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[9px] font-semibold bg-secondary text-secondary-foreground select-none">
-                                                {project.category}
-                                            </span>
-                                        )}
+                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[9px] font-semibold bg-secondary text-secondary-foreground select-none">
+                                            {project.category}
+                                        </span>
                                         <span className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium">
                                             <Calendar className="size-3.5" />
                                             {project.period}
@@ -216,10 +207,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className={cn(
-                                        "font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-tight",
-                                        project.featured ? "text-xl md:text-2xl" : "text-base md:text-lg"
-                                    )}>
+                                    <h3 className="text-base md:text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
                                         {project.title}
                                     </h3>
 
