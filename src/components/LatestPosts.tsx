@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Link from "next/link";
-import { ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
 export type Post = {
@@ -15,25 +17,84 @@ export type Post = {
 };
 
 export function LatestPosts({ posts }: { posts: Post[] }) {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        const badge = containerRef.current.querySelector(".animate-latest-badge");
+        const title = containerRef.current.querySelector(".animate-latest-title");
+        const desc = containerRef.current.querySelector(".animate-latest-desc");
+        const cards = containerRef.current.querySelectorAll(".animate-latest-card");
+        const cta = containerRef.current.querySelector(".animate-latest-cta");
+
+        // Hide initially to prevent FOUC
+        gsap.set([badge, title, desc, cta], { opacity: 0 });
+        if (cards.length > 0) gsap.set(cards, { opacity: 0 });
+
+        tl.fromTo(
+            badge,
+            { y: -20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.15 }
+        )
+            .fromTo(
+                title,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                "-=0.6"
+            )
+            .fromTo(
+                desc,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                "-=0.6"
+            );
+
+        if (cards.length > 0) {
+            tl.fromTo(
+                cards,
+                { y: 30, opacity: 0, scale: 0.98 },
+                { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15 },
+                "-=0.6"
+            );
+        }
+
+        tl.fromTo(
+            cta,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6 },
+            "-=0.5"
+        );
+
+        return () => {
+            tl.kill();
+        };
+    }, []);
+
     if (!posts || posts.length === 0) return null;
 
     const featuredPost = posts[0];
     const secondaryPosts = posts.slice(1, 3);
 
     return (
-        <div className="relative max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 flex flex-col items-center">
+        <div
+            ref={containerRef}
+            className="relative max-w-6xl mx-auto border-x-2 border-dotted border-border/40 px-6 py-16 md:py-24 flex flex-col items-center overflow-hidden"
+        >
             {/* Background elements */}
             <div className="absolute bottom-0 right-10 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-primary/3 rounded-full blur-3xl pointer-events-none -z-10" />
 
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-12 select-none">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-4 backdrop-blur-xs">
+                <div className="animate-latest-badge opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-4 backdrop-blur-xs">
                     📝 Escritos Recentes
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent">
+                <h2 className="animate-latest-title opacity-0 text-3xl md:text-4xl font-bold tracking-tight mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent">
                     Últimas do Blog
                 </h2>
-                <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+                <p className="animate-latest-desc opacity-0 text-sm text-muted-foreground max-w-xl mx-auto">
                     Confira meus artigos mais recentes sobre arquiteturas de software, dicas de performance e tutoriais avançados.
                 </p>
             </div>
@@ -45,7 +106,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
                     <Link
                         href={`/blog/${featuredPost.slug}`}
                         key={featuredPost.id}
-                        className="md:col-span-2 p-6 md:p-8 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-xs hover:bg-card/85 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between min-h-[340px]"
+                        className="animate-latest-card opacity-0 md:col-span-2 p-6 md:p-8 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-xs hover:bg-card/85 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between min-h-[340px]"
                     >
                         <div className="space-y-4">
                             {/* Featured Badge & Date */}
@@ -106,7 +167,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
                             <Link
                                 href={`/blog/${post.slug}`}
                                 key={post.id}
-                                className="p-5 md:p-6 rounded-2xl border border-border/60 bg-card/20 backdrop-blur-xs hover:bg-card/60 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between flex-1 min-h-[160px]"
+                                className="animate-latest-card opacity-0 p-5 md:p-6 rounded-2xl border border-border/60 bg-card/20 backdrop-blur-xs hover:bg-card/60 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between flex-1 min-h-[160px]"
                             >
                                 <div className="space-y-3">
                                     {/* Metadata */}
@@ -149,7 +210,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
             </div>
 
             {/* CTA Button to Blog Page */}
-            <div className="mt-12 z-10">
+            <div className="animate-latest-cta opacity-0 mt-12 z-10">
                 <Link
                     href="/blog"
                     className={buttonVariants({ variant: "outline", size: "lg" }) + " text-sm font-medium"}
