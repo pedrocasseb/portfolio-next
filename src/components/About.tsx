@@ -30,6 +30,19 @@ const EDUCATION = [
 
 const INTERNSHIPS = [
     {
+        role: "Estagiário Laboratório Didático de Química",
+        company: "UNAERP - Universidade de Ribeirão Preto",
+        period: "MAI 2026 - ATUAL",
+        description:
+            "Atuação no desenvolvimento de soluções para otimização de processos laboratoriais, automação de tarefas e suporte tecnológico às atividades do laboratório.",
+        achievements: [
+            "Desenvolvimento e manutenção de planilhas automatizadas para otimização de processos internos",
+            "Participação no desenvolvimento de automações para equipamentos laboratoriais",
+            "Desenvolvimento de aplicação mobile utilizando Flutter",
+        ],
+        stack: ["Automação", "Flutter", "Google Sheets"],
+    },
+    {
         role: "Estágio Rádio Unaerp",
         company: "UNAERP - Universidade de Ribeirão Preto",
         period: "OUT 2025 - ABR 2026",
@@ -45,19 +58,6 @@ const INTERNSHIPS = [
             "Organização",
             "Resolução de problemas",
         ],
-    },
-    {
-        role: "Estagiário Laboratório Didático de Química",
-        company: "UNAERP - Universidade de Ribeirão Preto",
-        period: "MAI 2026 - ATUAL",
-        description:
-            "Atuação no desenvolvimento de soluções para otimização de processos laboratoriais, automação de tarefas e suporte tecnológico às atividades do laboratório.",
-        achievements: [
-            "Desenvolvimento e manutenção de planilhas automatizadas para otimização de processos internos",
-            "Participação no desenvolvimento de automações para equipamentos laboratoriais",
-            "Desenvolvimento de aplicação mobile utilizando Flutter",
-        ],
-        stack: ["Automação", "Flutter", "Google Sheets"],
     },
 ];
 
@@ -274,15 +274,15 @@ export function About() {
                 </p>
 
                 {/* Location and Status info card */}
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                        <MapPin className="size-3.5" />
-                        Ribeirão Preto, SP, Brasil
-                    </span>
-                    <span className="h-3 w-px bg-border/60" />
+                <div className="mt-6 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 text-xs md:text-sm text-muted-foreground select-none">
                     <span className="flex items-center gap-1.5">
                         <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                         Disponível para novos estágios & projetos
+                    </span>
+                    <span className="h-3 w-px bg-border/60 hidden md:inline" />
+                    <span className="flex items-center gap-1">
+                        <MapPin className="size-3.5" />
+                        Ribeirão Preto, SP, Brasil
                     </span>
                 </div>
 
