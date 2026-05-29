@@ -12,51 +12,53 @@ import {
     ArrowUpRight,
     Terminal,
     Cpu,
-    Boxes
+    Boxes,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Mock/Template Data for easy customization by Pedro
 const EDUCATION = [
     {
-        title: "Graduação em Engenharia de Software",
-        institution: "Faculdade de Tecnologia (Ex: FIAP, USP, Mackenzie)",
-        period: "2024 - Presente",
-        description: "Foco em arquitetura de sistemas, algoritmos estruturados, engenharia de requisitos e metodologias ágeis.",
-        tags: ["Engenharia", "Algoritmos", "Arquitetura"]
+        title: "Graduação em Engenharia de Computação",
+        institution: "UNAERP - Universidade de Ribeirão Preto",
+        period: "2025 - Presente",
+        description:
+            "Foco em arquitetura de sistemas, algoritmos estruturados, engenharia de requisitos e metodologias ágeis.",
+        tags: ["Engenharia", "Algoritmos", "Arquitetura"],
     },
-    {
-        title: "Técnico em Informática para Internet",
-        institution: "Instituição de Ensino Tecnológico (Ex: ETEC / SENAI)",
-        period: "2021 - 2023",
-        description: "Fundamentos de desenvolvimento de sistemas, lógica de programação estruturada e bancos de dados relacionais.",
-        tags: ["Lógica", "Bancos de Dados", "HTML/CSS"]
-    }
 ];
 
 const INTERNSHIPS = [
     {
-        role: "Estágio em Desenvolvimento Full Stack",
-        company: "Empresa de Tecnologia (Ex: Tech Solutions)",
-        period: "Jan 2025 - Presente",
-        description: "Desenvolvimento de APIs escaláveis com Spring Boot (Java) e Node.js. Criação de interfaces modernas e interativas com React e Next.js.",
+        role: "Estágio Rádio Unaerp",
+        company: "UNAERP - Universidade de Ribeirão Preto",
+        period: "OUT 2025 - ABR 2026",
+        description:
+            "Fui responsável técnico pelas transmissões de áudio e vídeo da Rádio UNAERP. Realizava edição de material gravado, gestão do site e redes sociais da Rádio UNAERP e do curso de Jornalismo.",
         achievements: [
-            "Otimização de rotas de banco de dados reduzindo latência em 20%",
-            "Implementação de painéis web responsivos integrando APIs RESTful"
+            "Trabalho colaborativo com equipes multidisciplinares para suporte às transmissões e produção de conteúdo",
+            "Desenvolvimento de habilidades de comunicação, organização e resolução de problemas em ambientes dinâmicos",
         ],
-        stack: ["Java", "Spring Boot", "React", "Next.js", "PostgreSQL"]
+        stack: [
+            "Trabalho em equipe",
+            "Comunicação interpessoal",
+            "Organização",
+            "Resolução de problemas",
+        ],
     },
     {
-        role: "Estagiário de Desenvolvimento Frontend",
-        company: "Startup de Inovação (Ex: Innovate Lab)",
-        period: "Jun 2024 - Dez 2024",
-        description: "Criação de landing pages performáticas, refatoração de componentes legados para TypeScript e suporte ao time de design UX/UI.",
+        role: "Estagiário Laboratório Didático de Química",
+        company: "UNAERP - Universidade de Ribeirão Preto",
+        period: "MAI 2026 - ATUAL",
+        description:
+            "Atuação no desenvolvimento de soluções para otimização de processos laboratoriais, automação de tarefas e suporte tecnológico às atividades do laboratório.",
         achievements: [
-            "Migração de fluxos legados de JavaScript para TypeScript estruturado",
-            "Criação de biblioteca de componentes reutilizáveis baseada em Tailwind CSS"
+            "Desenvolvimento e manutenção de planilhas automatizadas para otimização de processos internos",
+            "Participação no desenvolvimento de automações para equipamentos laboratoriais",
+            "Desenvolvimento de aplicação mobile utilizando Flutter",
         ],
-        stack: ["React", "TypeScript", "Tailwind CSS", "Git", "Figma"]
-    }
+        stack: ["Automação", "Flutter", "Google Sheets"],
+    },
 ];
 
 const COURSES = [
@@ -64,20 +66,20 @@ const COURSES = [
         title: "Desenvolvimento Web Full Stack",
         platform: "Rocketseat / Alura (ou similar)",
         hours: "120 horas",
-        skills: "Next.js, Node.js, Prisma, PostgreSQL, Docker e deploy escalável."
+        skills: "Next.js, Node.js, Prisma, PostgreSQL, Docker e deploy escalável.",
     },
     {
         title: "Java & Spring Boot Professional",
         platform: "Udemy / Nelio Alves (ou similar)",
         hours: "80 horas",
-        skills: "JPA/Hibernate, Spring Security, arquitetura DDD e testes unitários."
+        skills: "JPA/Hibernate, Spring Security, arquitetura DDD e testes unitários.",
     },
     {
         title: "Clean Code & Melhores Práticas",
         platform: "Alura (ou similar)",
         hours: "40 horas",
-        skills: "Princípios SOLID, refatoração, design patterns e arquiteturas limpas."
-    }
+        skills: "Princípios SOLID, refatoração, design patterns e arquiteturas limpas.",
+    },
 ];
 
 const SKILL_CATEGORIES = [
@@ -90,8 +92,8 @@ const SKILL_CATEGORIES = [
             { name: "TypeScript", level: "Avançado" },
             { name: "JavaScript", level: "Avançado" },
             { name: "Tailwind CSS", level: "Avançado" },
-            { name: "GSAP (Animações)", level: "Intermediário" }
-        ]
+            { name: "GSAP (Animações)", level: "Intermediário" },
+        ],
     },
     {
         title: "Backend & Database",
@@ -100,10 +102,10 @@ const SKILL_CATEGORIES = [
             { name: "Java", level: "Avançado" },
             { name: "Spring Boot", level: "Intermediário" },
             { name: "Node.js", level: "Avançado" },
-            { name: "SQL (PostgreSQL)", level: "Avançado" },
+            { name: "SQL (PostgreSQL, MySQL)", level: "Avançado" },
             { name: "MongoDB", level: "Intermediário" },
-            { name: "REST APIs", level: "Avançado" }
-        ]
+            { name: "REST APIs", level: "Avançado" },
+        ],
     },
     {
         title: "Ferramentas & DevOps",
@@ -111,12 +113,12 @@ const SKILL_CATEGORIES = [
         skills: [
             { name: "Git & GitHub", level: "Avançado" },
             { name: "Docker", level: "Intermediário" },
-            { name: "CI/CD Actions", level: "Intermediário" },
+            { name: "CI/CD Actions", level: "Básico" },
             { name: "AWS Cloud", level: "Básico" },
             { name: "Figma (Design)", level: "Intermediário" },
-            { name: "Clean Code / SOLID", level: "Avançado" }
-        ]
-    }
+            { name: "Clean Code / SOLID", level: "Básico" },
+        ],
+    },
 ];
 
 export function About() {
@@ -127,42 +129,68 @@ export function About() {
 
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-        const header = containerRef.current.querySelector(".animate-about-header");
-        const timelineHeader = containerRef.current.querySelector(".animate-timeline-header");
-        const educationColumn = containerRef.current.querySelector(".animate-education-col");
-        const internshipColumn = containerRef.current.querySelector(".animate-internship-col");
-        const skillsSection = containerRef.current.querySelector(".animate-skills-section");
-        const skillsGrid = containerRef.current.querySelectorAll(".animate-skill-card");
-        const coursesSection = containerRef.current.querySelector(".animate-courses-section");
-        const coursesGrid = containerRef.current.querySelectorAll(".animate-course-card");
+        const header = containerRef.current.querySelector(
+            ".animate-about-header",
+        );
+        const timelineHeader = containerRef.current.querySelector(
+            ".animate-timeline-header",
+        );
+        const educationColumn = containerRef.current.querySelector(
+            ".animate-education-col",
+        );
+        const internshipColumn = containerRef.current.querySelector(
+            ".animate-internship-col",
+        );
+        const skillsSection = containerRef.current.querySelector(
+            ".animate-skills-section",
+        );
+        const skillsGrid = containerRef.current.querySelectorAll(
+            ".animate-skill-card",
+        );
+        const coursesSection = containerRef.current.querySelector(
+            ".animate-courses-section",
+        );
+        const coursesGrid = containerRef.current.querySelectorAll(
+            ".animate-course-card",
+        );
 
         // Set initial opacity to prevent FOUC
-        gsap.set([header, timelineHeader, educationColumn, internshipColumn, skillsSection, coursesSection], { opacity: 0 });
+        gsap.set(
+            [
+                header,
+                timelineHeader,
+                educationColumn,
+                internshipColumn,
+                skillsSection,
+                coursesSection,
+            ],
+            { opacity: 0 },
+        );
         if (skillsGrid.length > 0) gsap.set(skillsGrid, { opacity: 0 });
         if (coursesGrid.length > 0) gsap.set(coursesGrid, { opacity: 0 });
 
         tl.fromTo(
             header,
             { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, delay: 0.1 }
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.1 },
         )
             .fromTo(
                 timelineHeader,
                 { y: 20, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.8 },
-                "-=0.5"
+                "-=0.5",
             )
             .fromTo(
                 [educationColumn, internshipColumn],
                 { y: 30, opacity: 0 },
                 { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
-                "-=0.5"
+                "-=0.5",
             )
             .fromTo(
                 skillsSection,
                 { y: 20, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.8 },
-                "-=0.6"
+                "-=0.6",
             );
 
         if (skillsGrid.length > 0) {
@@ -170,7 +198,7 @@ export function About() {
                 skillsGrid,
                 { y: 20, opacity: 0, scale: 0.97 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
-                "-=0.6"
+                "-=0.6",
             );
         }
 
@@ -178,7 +206,7 @@ export function About() {
             coursesSection,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.8 },
-            "-=0.6"
+            "-=0.6",
         );
 
         if (coursesGrid.length > 0) {
@@ -186,7 +214,7 @@ export function About() {
                 coursesGrid,
                 { y: 20, opacity: 0, scale: 0.97 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
-                "-=0.6"
+                "-=0.6",
             );
         }
 
@@ -204,41 +232,59 @@ export function About() {
             <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary/2 rounded-full blur-3xl pointer-events-none -z-10" />
             <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-primary/3 rounded-full blur-3xl pointer-events-none -z-10" />
 
-            {/* Header Section */}
-            <div className="animate-about-header opacity-0 text-center max-w-3xl mx-auto mb-16 select-none">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-4 backdrop-blur-xs">
-                    👤 Sobre Mim
+            {/* Header / Intro Hero Section */}
+            <div className="animate-about-header opacity-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto h-[calc(100vh-140px)] md:h-[calc(100vh-180px)] select-none relative pb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-6 backdrop-blur-xs">
+                    👤 Quem é Pedro Casseb?
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent">
-                    Minha História & Jornada
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent leading-[1.15]">
+                    Criando soluções eficientes por meio de engenharia e inovação
                 </h1>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                    Sou o Pedro Casseb, desenvolvedor focado em criar produtos digitais robustos. 
-                    Abaixo, apresento minha formação acadêmica, experiências de estágio, stacks técnicas e cursos complementares.
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                    Sou estudante de Engenharia de Computação na UNAERP e desenvolvedor focado em criar 
+                    produtos digitais performáticos. Minha missão é traduzir problemas de negócios complexos 
+                    em linhas de código elegantes, limpas e escaláveis.
                 </p>
-                
+
                 {/* Location and Status info card */}
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
                         <MapPin className="size-3.5" />
-                        São Paulo, Brasil
+                        Ribeirão Preto, SP, Brasil
                     </span>
                     <span className="h-3 w-px bg-border/60" />
                     <span className="flex items-center gap-1.5">
                         <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                        Aberto a novos estágios & projetos
+                        Disponível para novos estágios & projetos
                     </span>
+                </div>
+
+                {/* Bouncing Scroll Down Indicator */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-70">
+                    <span className="text-[10px] tracking-wider uppercase font-semibold text-muted-foreground select-none">
+                        Rolar para explorar
+                    </span>
+                    <svg
+                        className="size-4 text-muted-foreground"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
                 </div>
             </div>
 
             {/* Timeline Section (Faculdade e Estágios) */}
-            <div className="mb-20 space-y-12">
+            <div className="pt-20 border-t border-border/40 mb-20 space-y-12 relative w-full">
                 <div className="animate-timeline-header opacity-0 text-center select-none">
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                         Trajetória de Aprendizado
                     </h2>
                     <p className="text-xs md:text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
-                        A união do conhecimento estruturado da universidade com a prática do dia a dia corporativo nos estágios.
+                        A união do conhecimento estruturado da universidade com
+                        a prática do dia a dia corporativo nos estágios.
                     </p>
                 </div>
 
@@ -247,7 +293,9 @@ export function About() {
                     <div className="animate-education-col opacity-0 space-y-6">
                         <div className="flex items-center gap-2 border-b border-border/60 pb-3">
                             <GraduationCap className="size-5 text-primary" />
-                            <h3 className="text-lg font-bold text-foreground">Formação Acadêmica</h3>
+                            <h3 className="text-lg font-bold text-foreground">
+                                Formação Acadêmica
+                            </h3>
                         </div>
 
                         <div className="relative border-l border-border/80 pl-6 ml-2 space-y-8">
@@ -292,7 +340,9 @@ export function About() {
                     <div className="animate-internship-col opacity-0 space-y-6">
                         <div className="flex items-center gap-2 border-b border-border/60 pb-3">
                             <Briefcase className="size-5 text-primary" />
-                            <h3 className="text-lg font-bold text-foreground">Experiência Profissional (Estágios)</h3>
+                            <h3 className="text-lg font-bold text-foreground">
+                                Experiência Profissional (Estágios)
+                            </h3>
                         </div>
 
                         <div className="relative border-l border-border/80 pl-6 ml-2 space-y-8">
@@ -321,9 +371,11 @@ export function About() {
 
                                         {/* Key achievements */}
                                         <ul className="list-disc pl-4 text-muted-foreground text-xs space-y-1 pt-1">
-                                            {intern.achievements.map((ach, aIdx) => (
-                                                <li key={aIdx}>{ach}</li>
-                                            ))}
+                                            {intern.achievements.map(
+                                                (ach, aIdx) => (
+                                                    <li key={aIdx}>{ach}</li>
+                                                ),
+                                            )}
                                         </ul>
 
                                         <div className="flex flex-wrap gap-1 pt-2">
@@ -351,7 +403,8 @@ export function About() {
                         Minhas Stacks Técnicas
                     </h2>
                     <p className="text-xs md:text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
-                        Tecnologias que estudo, utilizo e domino no meu dia a dia de engenharia de software.
+                        Tecnologias que estudo, utilizo e domino no meu dia a
+                        dia de engenharia de software.
                     </p>
                 </div>
 
@@ -368,14 +421,21 @@ export function About() {
                                         <div className="h-8 w-8 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
                                             <Icon className="size-4" />
                                         </div>
-                                        <h3 className="font-bold text-sm text-foreground">{cat.title}</h3>
+                                        <h3 className="font-bold text-sm text-foreground">
+                                            {cat.title}
+                                        </h3>
                                     </div>
 
                                     <div className="space-y-3.5">
                                         {cat.skills.map((skill, sIdx) => (
-                                            <div key={sIdx} className="space-y-1.5">
+                                            <div
+                                                key={sIdx}
+                                                className="space-y-1.5"
+                                            >
                                                 <div className="flex justify-between text-xs font-semibold">
-                                                    <span className="text-foreground">{skill.name}</span>
+                                                    <span className="text-foreground">
+                                                        {skill.name}
+                                                    </span>
                                                     <span className="text-muted-foreground/85 text-[10px]">
                                                         {skill.level}
                                                     </span>
@@ -385,9 +445,15 @@ export function About() {
                                                     <div
                                                         className={cn(
                                                             "h-full bg-primary/70 rounded-full group-hover:bg-primary transition-all duration-500",
-                                                            skill.level === "Avançado" && "w-full",
-                                                            skill.level === "Intermediário" && "w-2/3",
-                                                            skill.level === "Básico" && "w-1/3"
+                                                            skill.level ===
+                                                                "Avançado" &&
+                                                                "w-full",
+                                                            skill.level ===
+                                                                "Intermediário" &&
+                                                                "w-2/3",
+                                                            skill.level ===
+                                                                "Básico" &&
+                                                                "w-1/3",
                                                         )}
                                                     />
                                                 </div>
@@ -408,7 +474,8 @@ export function About() {
                         Cursos & Certificados Extra
                     </h2>
                     <p className="text-xs md:text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
-                        Estudos complementares, cursos de aperfeiçoamento e especializações técnicas relevantes.
+                        Estudos complementares, cursos de aperfeiçoamento e
+                        especializações técnicas relevantes.
                     </p>
                 </div>
 
@@ -438,7 +505,10 @@ export function About() {
                                 </div>
 
                                 <p className="text-xs text-muted-foreground leading-relaxed">
-                                    <strong className="text-foreground font-semibold">Tópicos:</strong> {course.skills}
+                                    <strong className="text-foreground font-semibold">
+                                        Tópicos:
+                                    </strong>{" "}
+                                    {course.skills}
                                 </p>
                             </div>
                         </div>
