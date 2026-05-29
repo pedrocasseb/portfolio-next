@@ -1,4 +1,5 @@
 import { Projects } from "@/components/Projects";
+import { getAllProjects } from "@/lib/projects";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +8,8 @@ export const metadata: Metadata = {
         "Explore o portfólio de projetos de Pedro Casseb, incluindo sistemas de automação IoT, aplicativos móveis desenvolvidos em Flutter, plataformas de streaming e APIs REST escaláveis.",
 };
 
-export default function Projetos() {
-    return <Projects />;
+export default function ProjetosPage() {
+    const projects = getAllProjects();
+
+    return <Projects projects={projects} />;
 }
