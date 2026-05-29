@@ -109,6 +109,14 @@ export function Footer() {
                                     </li>
                                     <li>
                                         <Link
+                                            href="/blog"
+                                            className="hover:text-neutral-700"
+                                        >
+                                            Blog
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
                                             href="/projetos"
                                             className="hover:text-neutral-700"
                                         >
@@ -117,7 +125,7 @@ export function Footer() {
                                     </li>
                                     <li>
                                         <Link
-                                            href="/contato"
+                                            href="/contatos"
                                             className="hover:text-neutral-700"
                                         >
                                             Contato
