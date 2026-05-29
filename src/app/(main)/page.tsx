@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { HomeAbout } from "@/components/HomeAbout";
 import { LatestPosts } from "@/components/LatestPosts";
 import { getAllPosts } from "@/lib/blog";
 
@@ -12,6 +13,7 @@ export default function Home() {
     return (
         <div className="flex flex-col">
             <Hero />
+            <HomeAbout />
             <LatestPosts posts={latestPosts} />
         </div>
     );
