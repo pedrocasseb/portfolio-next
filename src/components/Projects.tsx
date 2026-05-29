@@ -1,0 +1,343 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+    FolderGit2,
+    Calendar,
+    ArrowUpRight,
+    Cpu,
+    Monitor,
+    Smartphone,
+    Database,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Custom Projects Database based on Pedro's background
+const PROJECTS = [
+    {
+        id: 1,
+        title: "ChemMonitor IoT - Automação de Laboratório",
+        category: "Automação & IoT",
+        period: "MAI 2026 - ATUAL",
+        description: "Sistema completo de automação e telemetria para o Laboratório Didático de Química da UNAERP. Integra sensores de temperatura/pH com planilhas automatizadas via Google Sheets API e controle de hardware, otimizando os processos internos e segurança.",
+        tags: ["Automação", "IoT", "Google Sheets API", "Hardware"],
+        github: "https://github.com/pedrocasseb",
+        featured: true,
+    },
+    {
+        id: 2,
+        title: "ChemMonitor Mobile App",
+        category: "Mobile",
+        period: "JAN 2026 - ABR 2026",
+        description: "Aplicativo móvel desenvolvido em Flutter para monitoramento em tempo real de sensores laboratoriais, controle de insumos e agendamento de bancadas didáticas. Interface reativa com consumo de APIs REST.",
+        tags: ["Flutter", "Dart", "Mobile", "REST API"],
+        github: "https://github.com/pedrocasseb",
+        featured: false,
+    },
+    {
+        id: 3,
+        title: "Plataforma Web Rádio UNAERP",
+        category: "Frontend / Web",
+        period: "OUT 2025 - DEZ 2025",
+        description: "Plataforma completa de streaming e administração desenvolvida para a Rádio UNAERP. Permite transmissão de áudio em tempo real, upload e catalogação de podcasts gravados, e gerenciamento completo da grade jornalística.",
+        tags: ["Next.js", "React", "Streaming API", "Tailwind CSS"],
+        github: "https://github.com/pedrocasseb",
+        featured: false,
+    },
+    {
+        id: 4,
+        title: "Clean REST API (Spring Boot)",
+        category: "Backend / APIs",
+        period: "JUN 2025 - SET 2025",
+        description: "Desenvolvimento de uma API REST altamente escalável utilizando Java e Spring Boot. Segue rigorosamente os padrões de Clean Architecture, Clean Code, princípios SOLID e testes unitários com JUnit e Mockito.",
+        tags: ["Java", "Spring Boot", "Clean Architecture", "SOLID", "PostgreSQL"],
+        github: "https://github.com/pedrocasseb",
+        featured: false,
+    },
+    {
+        id: 5,
+        title: "Portfólio Pessoal Premium",
+        category: "Frontend / Web",
+        period: "2026",
+        description: "Meu próprio website de portfólio profissional. Desenvolvido com Next.js 16 (App Router), React 19 e Tailwind CSS. Equipado com animações extremamente fluidas e orquestradas em GSAP + ScrollTrigger.",
+        tags: ["Next.js 16", "React 19", "GSAP", "ScrollTrigger", "Tailwind CSS"],
+        github: "https://github.com/pedrocasseb",
+        featured: false,
+    },
+];
+
+const CATEGORIES = ["Todos", "Frontend / Web", "Mobile", "Automação & IoT", "Backend / APIs"];
+
+export function Projects() {
+    const [activeCategory, setActiveCategory] = useState("Todos");
+    const containerRef = useRef<HTMLDivElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    // Initial load animation for page header and filters
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const badge = containerRef.current.querySelector(".animate-projects-badge");
+        const title = containerRef.current.querySelector(".animate-projects-title");
+        const desc = containerRef.current.querySelector(".animate-projects-desc");
+        const filters = containerRef.current.querySelector(".animate-projects-filters");
+
+        gsap.set([badge, title, desc, filters], { opacity: 0 });
+
+        const headerTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+        headerTl.fromTo(
+            badge,
+            { y: -20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.1 }
+        )
+            .fromTo(
+                title,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                "-=0.6"
+            )
+            .fromTo(
+                desc,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                "-=0.6"
+            )
+            .fromTo(
+                filters,
+                { y: 15, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7 },
+                "-=0.5"
+            );
+
+        return () => {
+            headerTl.kill();
+        };
+    }, []);
+
+    // Scroll trigger or state change animation for project cards
+    useEffect(() => {
+        if (!gridRef.current) return;
+
+        const cards = gridRef.current.querySelectorAll(".animate-project-card");
+        if (cards.length === 0) return;
+
+        // Reset state
+        gsap.set(cards, { opacity: 0, y: 30, scale: 0.98 });
+
+        const cardsTrigger = ScrollTrigger.create({
+            trigger: gridRef.current,
+            start: "top 85%",
+            onEnter: () => {
+                gsap.fromTo(
+                    cards,
+                    { y: 30, opacity: 0, scale: 0.98 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.7,
+                        stagger: 0.1,
+                        ease: "power3.out",
+                        overwrite: "auto",
+                    }
+                );
+            },
+            onLeaveBack: () => {
+                gsap.set(cards, { opacity: 0, y: 30, scale: 0.98 });
+            }
+        });
+
+        // Trigger animation instantly if elements are already within or close to the viewport
+        if (ScrollTrigger.isInViewport(gridRef.current)) {
+            gsap.fromTo(
+                cards,
+                { y: 30, opacity: 0, scale: 0.98 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.7,
+                    stagger: 0.1,
+                    ease: "power3.out",
+                    overwrite: "auto",
+                }
+            );
+        }
+
+        return () => {
+            cardsTrigger.kill();
+            ScrollTrigger.getAll().forEach(t => t.kill());
+        };
+    }, [activeCategory]);
+
+    const filteredProjects = activeCategory === "Todos"
+        ? PROJECTS
+        : PROJECTS.filter((p) => p.category === activeCategory);
+
+    // Get Lucide Icon dynamically for each category
+    const getCategoryIcon = (cat: string) => {
+        switch (cat) {
+            case "Frontend / Web":
+                return <Monitor className="size-3.5" />;
+            case "Mobile":
+                return <Smartphone className="size-3.5" />;
+            case "Automação & IoT":
+                return <Cpu className="size-3.5" />;
+            case "Backend / APIs":
+                return <Database className="size-3.5" />;
+            default:
+                return <FolderGit2 className="size-3.5" />;
+        }
+    };
+
+    return (
+        <div
+            ref={containerRef}
+            className="relative max-w-6xl mx-auto min-h-screen border-x-2 border-dotted border-border/40 flex flex-col px-6 pt-20 pb-24 md:pt-24 md:pb-32 overflow-hidden"
+        >
+            {/* Ambient Background Blur Elements */}
+            <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-primary/2 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-primary/3 rounded-full blur-3xl pointer-events-none -z-10" />
+
+            {/* Section Header */}
+            <div className="flex flex-col justify-start items-center text-center max-w-4xl mx-auto mb-12 select-none relative pt-12">
+                <div className="animate-projects-badge opacity-0 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground mb-4 backdrop-blur-xs">
+                    💼 Portfólio de Engenharia
+                </div>
+                <h1 className="animate-projects-title opacity-0 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-linear-to-r from-neutral-950 via-neutral-700 to-neutral-500 dark:from-neutral-50 dark:via-neutral-300 dark:to-neutral-500 bg-clip-text text-transparent leading-[1.15]">
+                    Projetos & Aplicações
+                </h1>
+                <p className="animate-projects-desc opacity-0 text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                    Galeria de aplicações reais, integrações de IoT e APIs robustas que desenvolvi. 
+                    Foco em código limpo, arquitetura sólida e alta performance de execução.
+                </p>
+            </div>
+
+            {/* Premium Categories Filter Bar */}
+            <div className="animate-projects-filters opacity-0 flex flex-wrap items-center justify-center gap-2.5 mb-14 border border-border/50 rounded-2xl bg-card/20 backdrop-blur-xs p-2 max-w-3xl mx-auto z-10 select-none">
+                {CATEGORIES.map((cat) => {
+                    const active = activeCategory === cat;
+                    return (
+                        <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            className={cn(
+                                "flex items-center gap-1.5 px-4 py-2 text-xs md:text-sm font-semibold rounded-xl border border-transparent transition-all duration-300 cursor-pointer select-none",
+                                active
+                                    ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
+                            )}
+                        >
+                            {getCategoryIcon(cat)}
+                            {cat}
+                        </button>
+                    );
+                })}
+            </div>
+
+            {/* Projects Asymmetrical Grid */}
+            <div
+                ref={gridRef}
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full z-10"
+            >
+                {filteredProjects.map((project) => (
+                    <div
+                        key={project.id}
+                        className={cn(
+                            "animate-project-card opacity-0 p-6 md:p-8 rounded-2xl border border-border/60 bg-card/45 backdrop-blur-xs hover:bg-card/75 hover:border-border hover:shadow-xs transition-all duration-300 group flex flex-col justify-between min-h-[320px]",
+                            project.featured ? "md:col-span-2" : "md:col-span-1"
+                        )}
+                    >
+                        <div className="space-y-4">
+                            {/* Card Header metadata */}
+                            <div className="flex items-center justify-between">
+                                {project.featured ? (
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[9px] font-bold tracking-wider uppercase bg-primary text-primary-foreground select-none">
+                                        💡 Destaque
+                                    </span>
+                                ) : (
+                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[9px] font-semibold bg-secondary text-secondary-foreground select-none">
+                                        {project.category}
+                                    </span>
+                                )}
+                                <span className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium">
+                                    <Calendar className="size-3.5" />
+                                    {project.period}
+                                </span>
+                            </div>
+
+                            {/* Tech Stack Badges */}
+                            <div className="flex flex-wrap gap-1.5">
+                                {project.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="px-2 py-0.5 rounded-md border border-border bg-card text-muted-foreground text-[10px] font-semibold select-none"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            {/* Title */}
+                            <h3 className={cn(
+                                "font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 leading-tight",
+                                project.featured ? "text-xl md:text-2xl" : "text-base md:text-lg"
+                            )}>
+                                {project.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        {/* Card Bottom Links */}
+                        <div className="mt-8 flex items-center justify-between border-t border-border/40 pt-4">
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground group/link transition-colors"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="size-4 group-hover/link:scale-105 transition-transform duration-300"
+                                >
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                </svg>
+                                Ver Código-Fonte
+                            </a>
+
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={cn(
+                                    buttonVariants({ variant: "default", size: "icon" }),
+                                    "shrink-0"
+                                )}
+                            >
+                                <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                            </a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
