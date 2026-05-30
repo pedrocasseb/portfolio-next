@@ -5,15 +5,17 @@ category: "Frontend / Web"
 period: "ABR 2026 - MAI 2026"
 description: "Interface web tridimensional interativa de alta fidelidade baseada na landing page oficial da Antigravity, usando Three.js para renderização WebGL e GSAP para orquestração de animações."
 tags: ["React", "Three.js", "GSAP", "Tailwind CSS v4"]
-github: "https://github.com/pedrocasseb"
+github: "https://github.com/pedrocasseb/antigravity-website-clone"
 featured: true
 slug: "antigravity-3d-showcase"
 ---
 
 ## 📌 Descrição
-Interface interativa de altíssima performance visual, que serve como clone de demonstração (*showcase*) da landing page 3D da Antigravity. O projeto foca em gráficos interativos e animações fluidas para proporcionar uma experiência de navegação premium ao usuário.
+
+Interface interativa de altíssima performance visual, que serve como clone de demonstração (_showcase_) da landing page 3D da Antigravity. O projeto foca em gráficos interativos e animações fluidas para proporcionar uma experiência de navegação premium ao usuário.
 
 ## ⚙️ Tecnologias Principais
+
 - **Framework**: React (19.2.6)
 - **Empacotador/Bundler**: Vite (8.0.12)
 - **Estilização**: Tailwind CSS (v4.3.0), Lucide React
@@ -23,6 +25,7 @@ Interface interativa de altíssima performance visual, que serve como clone de d
 ---
 
 ## 🏗️ Estrutura do Projeto
+
 ```
 ANTIGRAVITY-CLONE/
 ├── public/                  # Modelos 3D (.gltf/.glb), texturas e assets estáticos
@@ -39,9 +42,10 @@ ANTIGRAVITY-CLONE/
 ---
 
 ## 🎨 Lógica e Elementos Visuais
-* **Cena 3D responsiva (Three.js)**: Renderiza uma malha interativa tridimensional de alta densidade de partículas, reagindo dinamicamente às coordenadas tridimensionais do cursor do mouse.
-* **Scroll-driven Animations (GSAP)**: Linhas de tempo complexas que sincronizam o deslocamento da câmera do Three.js e transições de opacidade dos textos exatamente com o progresso de rolagem do usuário.
-* **Tailwind v4**: Utilização estrita do novo motor de build nativo CSS do Tailwind v4 para velocidade instantânea e variáveis nativas rápidas.
+
+- **Cena 3D responsiva (Three.js)**: Renderiza uma malha interativa tridimensional de alta densidade de partículas, reagindo dinamicamente às coordenadas tridimensionais do cursor do mouse.
+- **Scroll-driven Animations (GSAP)**: Linhas de tempo complexas que sincronizam o deslocamento da câmera do Three.js e transições de opacidade dos textos exatamente com o progresso de rolagem do usuário.
+- **Tailwind v4**: Utilização estrita do novo motor de build nativo CSS do Tailwind v4 para velocidade instantânea e variáveis nativas rápidas.
 
 ---
 
@@ -57,4 +61,4 @@ pnpm install
 pnpm dev
 ```
 
-*O site estará disponível para visualização local em `http://localhost:5173`.*
+_O site estará disponível para visualização local em `http://localhost:5173`._
