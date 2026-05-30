@@ -209,18 +209,20 @@ export function About() {
                 start: "top 85%",
                 toggleActions: "play none none none",
             },
-            defaults: { ease: "power4.out" }
+            defaults: { ease: "power4.out" },
         });
-        timelineTl.fromTo(
-            timelineHeader,
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8 },
-        ).fromTo(
-            [educationColumn, internshipColumn],
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
-            "-=0.4",
-        );
+        timelineTl
+            .fromTo(
+                timelineHeader,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+            )
+            .fromTo(
+                [educationColumn, internshipColumn],
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
+                "-=0.4",
+            );
 
         // 3. Stacks Técnicas Scroll Trigger Animation
         const skillsTl = gsap.timeline({
@@ -229,7 +231,7 @@ export function About() {
                 start: "top 85%",
                 toggleActions: "play none none none",
             },
-            defaults: { ease: "power4.out" }
+            defaults: { ease: "power4.out" },
         });
         skillsTl.fromTo(
             skillsSection,
@@ -252,7 +254,7 @@ export function About() {
                 start: "top 85%",
                 toggleActions: "play none none none",
             },
-            defaults: { ease: "power4.out" }
+            defaults: { ease: "power4.out" },
         });
         coursesTl.fromTo(
             coursesSection,
@@ -556,7 +558,10 @@ export function About() {
                                         {course.title}
                                     </h4>
                                     <p className="text-[11px] font-semibold text-muted-foreground mt-0.5">
-                                        {course.platform} • <span className="text-foreground/80 font-bold">{course.hours}</span>
+                                        {course.platform} •{" "}
+                                        <span className="text-foreground/80 font-bold">
+                                            {course.hours}
+                                        </span>
                                     </p>
                                 </div>
                             </div>
